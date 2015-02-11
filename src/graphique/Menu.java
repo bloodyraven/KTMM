@@ -1,9 +1,12 @@
 package graphique;
 
+import bdd.Constantes;
+import controller.StageController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -39,11 +42,13 @@ public class Menu extends GridPane {
         newPerso.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
+				StageController.changeScene(primaryStage, new Scene(new NewPerso(primaryStage), Constantes.WINDOWX, Constantes.WINDOWY));
 			}
         });
         continuer.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
+				StageController.changeScene(primaryStage, new Scene(new SelectPerso(primaryStage), Constantes.WINDOWX, Constantes.WINDOWY));
 			}
         });
         options.setOnAction(new EventHandler<ActionEvent>() {

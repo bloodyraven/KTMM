@@ -54,18 +54,35 @@ public class BDD {
 	 * @param nbCol numero de colonne (commence a 0)
 	 * @return la ligne, null sinon
 	 */
-	public static String[] contient(String[][] table, String wanted, int nbCol) {
-		String[] toReturn=null;;
+	public static String[][] contient(String[][] table, String wanted, int nbCol) {
+		String[][] toReturn=null;
+		int nbFoisTrouve=0;
 		for (int i = 0; i < table.length; i++) {
 			if(table[i][nbCol].equals(wanted)) {
-				toReturn=new String[table[1].length];
-				for (int j = 0; j < toReturn.length; j++) {
-					toReturn[j]=table[i][j];
-				}
-				return toReturn;
+				nbFoisTrouve++;
 			}
 		}
-		return toReturn;
+		if(nbFoisTrouve==0) {
+			return toReturn;
+		} else {
+			int idx=0;
+			toReturn=new String[nbFoisTrouve][table[0].length];
+			for (int i = 0; i < table.length; i++) {
+				if(table[i][nbCol].equals(wanted)) {
+					for (int j = 0; j < toReturn[0].length; j++) {
+						toReturn[idx][j]=table[i][j];
+					}
+					idx++;
+				}
+			}
+			for (int i = 0; i < toReturn.length; i++) {
+				for (int j = 0; j < toReturn.length; j++) {
+					System.out.print(toReturn[i][j]+" ");
+				}
+				System.out.println();
+			}
+			return toReturn;
+		}	
 	}
 	
 	/**

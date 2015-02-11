@@ -59,7 +59,7 @@ public class Inscription extends GridPane {
         inscrip.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(javafx.event.ActionEvent arg0) {
-	        	String[] logs = BDD.contient(BDD.getTable("bdd/logs.txt"), uname.getText(), 0);
+	        	String[][] logs = BDD.contient(BDD.getTable("bdd/logs.txt"), uname.getText(), 0);
 	        	if(logs==null) { //si la table ne contient pas le login
 	        		if(pass.getText().equals(passverif.getText())) {
 	        			String tab[] = {uname.getText(), pass.getText()};

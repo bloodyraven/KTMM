@@ -65,13 +65,13 @@ public class Login extends Application {
         login.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(javafx.event.ActionEvent arg0) {
-				String[] logs = BDD.contient(BDD.getTable("bdd/logs.txt"), uname.getText(), 0);
+				String[][] logs = BDD.contient(BDD.getTable("bdd/logs.txt"), uname.getText(), 0);
 				if(logs==null) { //si pas trouvé
 					toast.setText(uname.getText()+" n'est pas enregistré.");
 				} else { //si trouvé
-					if(logs[1].equals(pass.getText())) { // si mdp est bon
+					if(logs[0][1].equals(pass.getText())) { // si mdp est bon
 						toast.setText("Bienvenue "+uname.getText()+".");
-						StageController.changeScene(primaryStage, new Scene(new Menu(primaryStage, createPlayer(logs[0])), Constantes.WINDOWX, Constantes.WINDOWY));
+						StageController.changeScene(primaryStage, new Scene(new Menu(primaryStage, createPlayer(logs[0][0])), Constantes.WINDOWX, Constantes.WINDOWY));
 					} else { //s'il est faux
 						toast.setText("Mot de passe incorrect.");
 					}
